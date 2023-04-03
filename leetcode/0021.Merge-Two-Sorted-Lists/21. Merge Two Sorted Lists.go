@@ -28,3 +28,31 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	l2.Next = mergeTwoLists(l1, l2.Next)
 	return l2
 }
+
+func myMergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
+	var prefixNode = &ListNode{}
+	var result = prefixNode
+	for l1 != nil && l2 != nil {
+		if l1.Val < l2.Val {
+			prefixNode.Next = l1
+			//重新给l1赋值
+			l1 = l1.Next
+		} else {
+			prefixNode.Next = l2
+			//重新给l2赋值
+			l2 = l2.Next
+		}
+
+		prefixNode = prefixNode.Next
+	}
+
+	if l1 != nil {
+		prefixNode.Next = l1
+	}
+
+	if l2 != nil {
+		prefixNode.Next = l2
+	}
+
+	return result.Next
+}

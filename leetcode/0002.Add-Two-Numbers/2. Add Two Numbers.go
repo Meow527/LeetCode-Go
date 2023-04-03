@@ -37,3 +37,35 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 	return head.Next
 }
+
+func myAddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	var nowNode = &ListNode{}
+	var result = nowNode
+	var tempSum int
+
+	for l1 != nil || l2 != nil || tempSum > 0 {
+		//新建一个链表
+		nowNode.Next = new(ListNode)
+		nowNode = nowNode.Next
+
+		//如果l1存在
+		if l1 != nil {
+			tempSum = tempSum + l1.Val
+			//l1重新赋值
+			l1 = l1.Next
+		}
+
+		//如果l2存在
+		if l2 != nil {
+			tempSum = tempSum + l2.Val
+			//l2重新赋值
+			l2 = l2.Next
+		}
+
+		//赋值
+		nowNode.Val = tempSum % 10
+		tempSum = (tempSum - nowNode.Val) / 10
+	}
+
+	return result.Next
+}

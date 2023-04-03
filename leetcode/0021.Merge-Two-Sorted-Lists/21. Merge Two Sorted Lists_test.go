@@ -79,3 +79,29 @@ func Test_Problem21(t *testing.T) {
 	}
 	fmt.Printf("\n\n\n")
 }
+
+func Test_My_Merge_Two_Sorted_Lists(t *testing.T) {
+
+	qs := []question21{
+
+		{
+			para21{[]int{1, 2, 3, 4}, []int{1, 2, 3, 4}},
+			ans21{[]int{1, 1, 2, 2, 3, 3, 4, 4}},
+		},
+
+		{
+			para21{[]int{1, 2, 3, 4, 5}, []int{1, 2, 3, 4, 5}},
+			ans21{[]int{1, 1, 2, 2, 3, 3, 4, 4, 5, 5}},
+		},
+
+		// 如需多个测试，可以复制上方元素。
+	}
+
+	fmt.Printf("------------------------Leetcode Problem 21------------------------\n")
+
+	for _, q := range qs {
+		_, p := q.ans21, q.para21
+		fmt.Printf("【input】:%v       【output】:%v\n", p, structures.List2Ints(myMergeTwoLists(structures.Ints2List(p.one), structures.Ints2List(p.another))))
+	}
+	fmt.Printf("\n\n\n")
+}
